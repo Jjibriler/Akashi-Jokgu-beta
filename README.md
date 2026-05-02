@@ -44,63 +44,20 @@
 ---
 
 ## 4. 코드 구조
-┌────────────────────────────────┐
-│          [User Input]          │
-│ (Keyboard: A, D, W, S, Shift)  │
-└───────────────┬────────────────┘
-                │ 1. 방향키, 커맨드, 슬로우(S) 입력
-                ▼
-┌────────────────────────────────┐
-│     [PlayerController.cs]      │
-│ ------------------------------ │
-│ • Update()                     │
-│   - S/DownArrow 홀드 시        │
-│     isSlowingActive = true     │
-│                                │
-│ • CheckWaveCommand()           │
-│   - 6n23 웨이브 대시 (속도 4배)  │
-│                                │
-│ • 웨이브 직후 0.1초 내 Shift 시  │
-│   - ActivateSpecialMove()      │
-│   - isSpecialActive = true     │
-└───────────────┬────────────────┘
-                │ 2. 충돌 시 플레이어 상태(공격/방어) 확인
-                ▼
-┌────────────────────────────────┐
-│       [BallPhysics.cs]         │
-│ ------------------------------ │
-│ • OnTriggerEnter2D()           │
-│   - 특수기(Shift) 상태:        │
-│     speedMultiplier = 3.0f     │
-│   - 슬로우(S 홀드) 상태:       │
-│     speedMultiplier = 0.33f    │
-│                                │
-│ • Update()                     │
-│   - 배율 적용하여 공 이동      │
-│   - Ground 접촉 시 점수 전달   │
-└───────────────┬────────────────┘
-                │ 3. 득점 및 승리 조건 확인
-                ▼
-┌────────────────────────────────┐
-│       [GameManager.cs]         │
-│ ------------------------------ │
-│ • AddScore(winner)             │
-│   - 9점(targetScore) 도달 체크 │
-│                                │
-│ • ShowGameOver()               │
-│   - Time.timeScale = 0 (정지)  │
-│   - GameOver 패널 활성화       │
-│                                │
-│ • RetryGame() / ExitGame()     │
-│   - 씬 재시작 / 앱 종료        │
-└───────────────┬────────────────┘
-                │ 4. 라운드 리셋 또는 게임 재시작
-                ▼
-   [PlayerController] & [BallPhysics] (상태 초기화 및 시간 재개)
+
+<img width="712" height="237" alt="image" src="https://github.com/user-attachments/assets/4e54c02f-2645-42b8-bc57-810b74c403c1" />
+
+<img width="528" height="433" alt="image" src="https://github.com/user-attachments/assets/c0906c6e-6308-4abe-8a1a-e7028ca2b33e" />
+
+<img width="405" height="398" alt="image" src="https://github.com/user-attachments/assets/e6b1e4bf-611e-49a6-9c79-e5f6b0c69f6c" />
+
+<img width="570" height="443" alt="image" src="https://github.com/user-attachments/assets/dfdc9549-56d1-4802-a15c-9ee3ffe4d4cf" />
+
+
 
 ---
 
-## 4. 리소스 및 라이센스
+## 5. 리소스 및 라이센스
 * **스크립트**: `BallPhysics.cs`, `GameManager.cs`, `PlayerController.cs` 직접 구현
 * **그래픽**: 캐릭터 이미지 직접 제작, 배경 이미지 벽람항로 게임 내 이미지 사용
 * **사운드**:
